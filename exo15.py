@@ -5,26 +5,27 @@ def decToBinaryStr(nb , size):
 		s = "0"+ s
 	return s
 
-size = 20 * 2
+size = 6 * 2
 
-allNb = []
-for i in range(0,2**size) : 
-	allNb.append(decToBinaryStr(i , size))
-
-
-
-newList = []
-nb1 = 0
-nb0 = 0
-for s in allNb :
-	for c in s :
-		if c == '1' :
-			nb1 += 1
-		else:
-			nb0 += 1
-	if nb0 == nb1  :
-		newList.append(s)
+def test(size):
+	cpt = 0
 	nb1 = 0
-	nb0 = 0 
+	nb0 = 0
+	for i in range(2**int(size/2) - 1,2**size , 2) : 
+		s = decToBinaryStr(i , size)
+		nb1 = s.count("1")
+		nb0 = s.count("0")
+		if nb0 == nb1  :
+			cpt += 1
+		nb1 = 0
+		nb0 = 0 
+	return cpt * 2
 
-print(len(newList))
+
+for i in range(10):
+    print(test(2 * i) , end = " ")
+
+
+
+
+#print(len(newList))
